@@ -16,19 +16,19 @@
         <div class="tabs">
             <div class="tab-item active">
                 <i class="tab-icon fas fa-code"></i>
-                Nội suy newton
+                Phương pháp nội suy Newton
             </div>
             <div class="tab-item">
                 <i class="tab-icon fas fa-cog"></i>
-                Nội suy lagrange
+                Phương pháp nội suy Lagrange
             </div>
             <div class="tab-item">
                 <i class="tab-icon fas fa-plus-circle"></i>
-                Hình thang
+                Phương pháp hình thang
             </div>
             <div class="tab-item">
                 <i class="tab-icon fas fa-plus-circle"></i>
-                Simpson
+                Phương pháp Simpson
             </div>
             <div class="tab-item">
                 <i class="tab-icon fas fa-cog"></i>
@@ -46,6 +46,10 @@
             <div class="tab-pane active">
                <form action="" class="dataform active">
                     <table class="method">
+                        <tr>
+                            <td class="F active">
+                            </td>
+                        </tr>
                         <tr>
                             <td>Nhập n</td>
                             <td>
@@ -74,6 +78,10 @@
                 <form action="" class="dataform">
                     <table class="method">
                         <tr>
+                            <td class="F">
+                            </td>
+                        </tr>
+                        <tr>
                             <td>Nhập n</td>
                             <td>
                                 <input type="text" class="N">
@@ -100,6 +108,12 @@
             <div class="tab-pane">
                 <div class="dataform">
                     <table class="method">
+                        <tr>
+                            <td>Nhập f(x)</td>
+                            <td>
+                                <input type="text" class="F">
+                            </td>
+                        </tr>
                         <tr>
                             <td>Nhập a</td>
                             <td>
@@ -138,6 +152,12 @@
                 <form action="" class="dataform">
                     <table class="method">
                         <tr>
+                            <td>Nhập f(x)</td>
+                            <td>
+                                <input type="text" class="F">
+                            </td>
+                        </tr>
+                        <tr>
                             <td>Nhập a</td>
                             <td>
                                 <input type="text" class="simpsonA">
@@ -175,6 +195,12 @@
                 <form action="" class="dataform">
                     <table class="method">
                         <tr>
+                            <td>Nhập f(x)</td>
+                            <td>
+                                <input type="text" class="F">
+                            </td>
+                        </tr>
+                        <tr>
                             <td>Nhập a</td>
                             <td>
                                 <input type="text" class="bisectionA">
@@ -211,6 +237,12 @@
                 <form action="" class="dataform">
                     <table class="method">
                         <tr>
+                            <td>Nhập f(x)</td>
+                            <td>
+                                <input type="text" class="F">
+                            </td>
+                        </tr>
+                        <tr>
                             <td>Nhập x0</td>
                             <td>
                                 <input type="text" class="iterationX0">
@@ -246,12 +278,14 @@
     </div>
 
     <script>
+        
         const $ = document.querySelector.bind(document);
         const $$ = document.querySelectorAll.bind(document);
 
         const tabs = $$(".tab-item");
         const panes = $$(".tab-pane");
         const dataforms = $$(".dataform");
+        const fActives  = $$(".F");
         const nActives  = $$(".N");
 
         const tabActive = $(".tab-item.active");
@@ -265,12 +299,14 @@
         tabs.forEach((tab, index) => {
             const pane = panes[index];
             const dataform = dataforms[index];
+            const fActive = fActives[index];
             const nActive = nActives[index];
 
             tab.onclick = function() {
                 $('.tab-item.active').classList.remove('active')
                 $('.tab-pane.active').classList.remove('active')
                 $('.dataform.active').classList.remove('active')
+                $('.F.active').classList.remove('active')
                 $('.N.active').classList.remove('active')
 
                 line.style.left = this.offsetLeft + "px";
@@ -279,12 +315,19 @@
                 this.classList.add('active')
                 pane.classList.add('active')
                 dataform.classList.add('active')
+                fActive.classList.add('active')
                 nActive.classList.add('active')
             }
         });
-        // 
+        // Fx
         function f(x) {
-            return Math.sqrt(10/(4+x));
+            fstring = document.getElementsByClassName("F active")[0].value;
+            var source="(function() {return "+fstring+";})"
+            with(Math){
+                var f = eval(source);
+                var v = f();
+            }
+            return v;
         }
         // Hình thang
         function trapezoidMethod() {
@@ -428,6 +471,16 @@
             var e = parseFloat(document.getElementsByClassName("N active")[0].value);
             var err = 0;
             var x = 0;
+
+            if (x0=="" || q=="" || e=="") 
+            {
+                document.getElementsByClassName("result")[5].innerHTML = "Nhập còn thiếu!";
+                if(q>=1) 
+                {
+                    document.getElementsByClassName("result")[5].innerHTML = "Hàm không hội tụ";
+                    return;
+                }
+            }
 
             do
             {
