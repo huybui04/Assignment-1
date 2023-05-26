@@ -39,6 +39,11 @@
                 Phương pháp lặp
             </div>
             <div class="line"></div>
+            <div class="tab-item">
+                <i class="tab-icon fas fa-code"></i>
+                Phương pháp dây cung
+            </div>
+            <div class="line"></div>
         </div>
       
         <!-- Tab content -->
@@ -275,6 +280,48 @@
                     </table>
                 </form>
             </div>
+            <div class="tab-pane">
+                <form action="" class="dataform">
+                    <table class="method">
+                        <tr>
+                            <td>Nhập f(x)</td>
+                            <td>
+                                <input type="text" class="F">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Nhập a</td>
+                            <td>
+                                <input type="text" class="secantA">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Nhập b</td>
+                            <td>
+                                <input type="text" class="secantB">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Nhập e</td>
+                            <td>
+                                <input type="text" class="N">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td>
+                                <input type="button" value="Solve" class="method-btn" onclick="secantMethod()">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Kết quả </td>
+                            <td>
+                                <div class="result"></div>
+                            </td>
+                        </tr>
+                    </table>
+                </form>
+            </div>
     </div>
 
     <script>
@@ -380,8 +427,8 @@
             
                 for(j=0;j<2;j++) {
                 var tagColumn = document.createElement("td");
-                var textNode = document.createTextNode(i + "-" + j);
-				tagColumn.appendChild(textNode);
+                // var textNode = document.createTextNode(i + "-" + j);
+				// tagColumn.appendChild(textNode);
 				tagRow.appendChild(tagColumn);
                 var tagInput = document.createElement("input");
                 tagInput.setAttribute("class",String(i)+"-"+String(j));
@@ -472,16 +519,6 @@
             var err = 0;
             var x = 0;
 
-            if (x0=="" || q=="" || e=="") 
-            {
-                document.getElementsByClassName("result")[5].innerHTML = "Nhập còn thiếu!";
-                if(q>=1) 
-                {
-                    document.getElementsByClassName("result")[5].innerHTML = "Hàm không hội tụ";
-                    return;
-                }
-            }
-
             do
             {
                 x = f(x0);
@@ -489,6 +526,23 @@
                 x0 = x;
             } while (err>=e*(1-q)/q);
             document.getElementsByClassName("result")[5].innerHTML = x;
+        }
+        // Secant
+        function secantMethod() {
+            var a = parseFloat(document.getElementsByClassName("secantA")[0].value);
+            var b = parseFloat(document.getElementsByClassName("secantB")[0].value);
+            var e = parseFloat(document.getElementsByClassName("N active")[0].value);
+            var err = 0;
+            var x = 0;
+
+            do
+            {
+                x = (a*f(b)-b*f(a))/(f(b)-f(a));
+                if (f(a)*f(x)<0) b = x;
+                else a = x;
+                err = b-a;
+            } while (err>=e);
+            document.getElementsByClassName("result")[6].innerHTML = x;
         }
     </script>
 
