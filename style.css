@@ -22,7 +22,7 @@ body > div {
     width: 0;
     height: 6px;
     border-radius: 15px;
-    background-color: #c23564;
+    /* background-color: #c23564; */
     transition: all 0.2s ease;
 }
 .tab-item {
@@ -30,7 +30,7 @@ body > div {
     padding: 16px 20px 11px 20px;
     font-size: 18px;
     text-align: center;
-    color: #c23564;
+    /* color: #c23564; */
     background-color: #fff;
     border-top-left-radius: 5px;
     border-top-right-radius: 5px;
@@ -55,7 +55,7 @@ body > div {
 }
 .tab-content {
     padding: 28px 0;
-    border: 2px solid #c23564;
+    /* border: 2px solid #c23564; */
 }
 .tab-pane {
     color: #333;
