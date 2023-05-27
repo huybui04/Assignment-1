@@ -55,7 +55,7 @@ body > div {
 }
 .tab-content {
     padding: 28px 0;
-    /* border: 2px solid #c23564; */
+    border: 2px solid ;
 }
 .tab-pane {
     color: #333;
