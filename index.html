@@ -384,6 +384,22 @@
             var h = (b-a)/n;
             var s = f(a) + f(b);
 
+            try 
+            {
+                if (document.getElementsByClassName("trapezoidA")[0].value == "" ||
+                    document.getElementsByClassName("trapezoidB")[0].value == "" ||
+                    document.getElementsByClassName("N active")[0].value == "" ||
+                    document.getElementsByClassName("F active")[0].value == "") throw "Nhập thiếu";
+                if (isNaN(document.getElementsByClassName("trapezoidA")[0].value)||
+                    isNaN(document.getElementsByClassName("trapezoidB")[0].value)||
+                    isNaN(document.getElementsByClassName("N active")[0].value)) throw "Không hợp lệ";
+            }
+            catch(err)
+            {
+                document.getElementsByClassName("result")[2].innerHTML = err;
+                return;
+            }
+
             for (i=1;i<n;i++)
             {
                 var x = a + i*h;
@@ -400,6 +416,22 @@
             var n = parseFloat(document.getElementsByClassName("N active")[0].value);
             var h = (b-a)/n;
             var s = f(a) + f(b);
+
+            try 
+            {
+                if (document.getElementsByClassName("simpsonA")[0].value == "" ||
+                    document.getElementsByClassName("simpsonB")[0].value == "" ||
+                    document.getElementsByClassName("N active")[0].value == "" ||
+                    document.getElementsByClassName("F active")[0].value == "") throw "Nhập thiếu";
+                if (isNaN(document.getElementsByClassName("trapezoidA")[0].value)||
+                    isNaN(document.getElementsByClassName("trapezoidB")[0].value)||
+                    isNaN(document.getElementsByClassName("N active")[0].value)) throw "Không hợp lệ";
+            }
+            catch(err)
+            {
+                document.getElementsByClassName("result")[3].innerHTML = err;
+                return;
+            }
 
             for (i=1;i<n;i++)
             {
@@ -419,7 +451,19 @@
             var tagTable = document.createElement("table");
 
 		    tagTable.border = 1;
-	
+            
+            try 
+            {
+                if (document.getElementsByClassName("N active")[0].value == "" ) throw "Nhập thiếu";
+                if (isNaN(document.getElementsByClassName("N active")[0].value)) throw "Không hợp lệ";
+            }
+            catch(err)
+            {
+                document.getElementsByClassName("result")[0].innerHTML = err;
+                document.getElementsByClassName("result")[1].innerHTML = err;
+                return;
+            }
+
             for (i=0;i<n; i++) 
             {
                 var tagRow = document.createElement("tr");
@@ -443,7 +487,20 @@
             var n = parseInt(document.getElementsByClassName("N active")[0].value);
             var a = parseFloat(document.getElementsByClassName("newtonA")[0].value);
             var D = [];
-            var inPutsX = [], inPutsY = [];            
+            var inPutsX = [], inPutsY = [];   
+
+            try 
+            {
+                if (document.getElementsByClassName("newtonA")[0].value == "" ||
+                    document.getElementsByClassName("N active")[0].value == "" ) throw "Nhập thiếu";
+                if (isNaN(document.getElementsByClassName("newtonA")[0].value)||
+                    isNaN(document.getElementsByClassName("N active")[0].value)) throw "Không hợp lệ";
+            }
+            catch(err)
+            {
+                document.getElementsByClassName("result")[0].innerHTML = err;
+                return;
+            }
 
             for (i=0;i<n;i++)
             {
@@ -501,6 +558,22 @@
             var b = parseFloat(document.getElementsByClassName("bisectionB")[0].value);
             var e = parseFloat(document.getElementsByClassName("N active")[0].value);
 
+            try 
+            {
+                if (document.getElementsByClassName("bisectionA")[0].value == "" ||
+                    document.getElementsByClassName("bisectionB")[0].value == "" ||
+                    document.getElementsByClassName("N active")[0].value == "" ||
+                    document.getElementsByClassName("F active")[0].value == "") throw "Nhập thiếu";
+                if (isNaN(document.getElementsByClassName("bisectionA")[0].value)||
+                    isNaN(document.getElementsByClassName("bisectionB")[0].value)||
+                    isNaN(document.getElementsByClassName("N active")[0].value)) throw "Không hợp lệ";
+            }
+            catch(err)
+            {
+                document.getElementsByClassName("result")[4].innerHTML = err;
+                return;
+            }
+
             do
             {
                 var x = (a+b)/2;
@@ -516,15 +589,31 @@
             var x0 = parseFloat(document.getElementsByClassName("iterationX0")[0].value);
             var q = parseFloat(document.getElementsByClassName("iterationQ")[0].value);
             var e = parseFloat(document.getElementsByClassName("N active")[0].value);
-            var err = 0;
+            var ERR = 0;
             var x = 0;
+
+            try 
+            {
+                if (document.getElementsByClassName("iterationX0")[0].value == "" ||
+                    document.getElementsByClassName("iterationQ")[0].value == "" ||
+                    document.getElementsByClassName("N active")[0].value == "" ||
+                    document.getElementsByClassName("F active")[0].value == "") throw "Nhập thiếu";
+                if (isNaN(document.getElementsByClassName("iterationX0")[0].value)||
+                    isNaN(document.getElementsByClassName("iterationQ")[0].value)||
+                    isNaN(document.getElementsByClassName("N active")[0].value)) throw "Không hợp lệ";
+            }
+            catch(err)
+            {
+                document.getElementsByClassName("result")[5].innerHTML = err;
+                return;
+            }
 
             do
             {
                 x = f(x0);
-                err = Math.abs(x-x0);
+                ERR = Math.abs(x-x0);
                 x0 = x;
-            } while (err>=e*(1-q)/q);
+            } while (ERR>=e*(1-q)/q);
             document.getElementsByClassName("result")[5].innerHTML = x;
         }
         // Secant
@@ -532,16 +621,34 @@
             var a = parseFloat(document.getElementsByClassName("secantA")[0].value);
             var b = parseFloat(document.getElementsByClassName("secantB")[0].value);
             var e = parseFloat(document.getElementsByClassName("N active")[0].value);
-            var err = 0;
+            var ERR = 0;
             var x = 0;
+            var i = 0;
+
+            try 
+            {
+                if (document.getElementsByClassName("secantA")[0].value == "" ||
+                    document.getElementsByClassName("secantB")[0].value == "" ||
+                    document.getElementsByClassName("N active")[0].value == "" ||
+                    document.getElementsByClassName("F active")[0].value == "") throw "Nhập thiếu";
+                if (isNaN(document.getElementsByClassName("secantA")[0].value)||
+                    isNaN(document.getElementsByClassName("secantB")[0].value)||
+                    isNaN(document.getElementsByClassName("N active")[0].value)) throw "Không hợp lệ";
+            }
+            catch(err)
+            {
+                document.getElementsByClassName("result")[6].innerHTML = err;
+                return;
+            }
 
             do
             {
                 x = (a*f(b)-b*f(a))/(f(b)-f(a));
                 if (f(a)*f(x)<0) b = x;
                 else a = x;
-                err = b-a;
-            } while (err>=e);
+                ERR = b-a;
+                i++;
+            } while (ERR>=e);
             document.getElementsByClassName("result")[6].innerHTML = x;
         }
     </script>
