@@ -535,6 +535,19 @@
             var inPutsX = [], inPutsY = [];
             var S = 0;
 
+            try 
+            {
+                if (document.getElementsByClassName("lagrangeA")[0].value == "" ||
+                    document.getElementsByClassName("N active")[0].value == "" ) throw "Nhập thiếu";
+                if (isNaN(document.getElementsByClassName("lagrangeA")[0].value)||
+                    isNaN(document.getElementsByClassName("N active")[0].value)) throw "Không hợp lệ";
+            }
+            catch(err)
+            {
+                document.getElementsByClassName("result")[1].innerHTML = err;
+                return;
+            }
+
             for (i=0;i<n;i++)
             {
                     inPutsX[i] = parseFloat(document.getElementsByClassName(String(i)+"-"+String(0))[0].value);
