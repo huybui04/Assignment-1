@@ -9,46 +9,62 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css" integrity="sha512-HK5fgLBL+xu6dm/Ii3z4xhlSUyZgTT9tuc/hSrtw6uzJOvgRr2a9jyxxT1ely+B+xFAmJKVSTbpM/CuL7qxO8w==" crossorigin="anonymous" />
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjs/9.3.2/math.js"></script>
 </head>
 <body>
-    <div>
-        <!-- Tab items -->
+    <div class="menu">
+        <ul class="list">Giải tích số
+            <li class="item" onclick="select1()">Phương pháp Nội suy</li>
+            <li class="item" onclick="select2()">Giải gần đúng tích phân</li>
+            <li class="item" onclick="select3()">Nghiệm gần đúng</li>
+            <li class="item" onclick="select4()">Phương trình tiếp tuyến</li>
+        </ul>
+    </div>
+
+    <div class="after-menu hide">
         <div class="tabs">
-            <div class="tab-item active">
+            <div class="tab-item active hide" id="hide0">
                 <i class="tab-icon fas fa-code"></i>
                 Phương pháp nội suy Newton
             </div>
-            <div class="tab-item">
-                <i class="tab-icon fas fa-cog"></i>
+            <div class="tab-item hide" id="hide1">
+                <i class="tab-icon fas fa-code"></i>
                 Phương pháp nội suy Lagrange
             </div>
-            <div class="tab-item">
+            <div class="tab-item hide" id="hide2">
                 <i class="tab-icon fas fa-plus-circle"></i>
                 Phương pháp hình thang
             </div>
-            <div class="tab-item">
+            <div class="tab-item hide" id="hide3">
                 <i class="tab-icon fas fa-plus-circle"></i>
                 Phương pháp Simpson
             </div>
-            <div class="tab-item">
+            <div class="tab-item hide" id="hide4">
                 <i class="tab-icon fas fa-cog"></i>
                 Phương pháp chia đôi
             </div>
-            <div class="tab-item">
-                <i class="tab-icon fas fa-code"></i>
+            <div class="tab-item hide" id="hide5">
+                <i class="tab-icon fas fa-cog"></i>
                 Phương pháp lặp
             </div>
-            <div class="line"></div>
-            <div class="tab-item">
-                <i class="tab-icon fas fa-code"></i>
+            <div class="tab-item hide" id="hide6">
+                <i class="tab-icon fas fa-cog"></i>
                 Phương pháp dây cung
+            </div>
+            <div class="tab-item hide" id="hide7">
+                <i class="tab-icon fas fa-cog"></i>
+                Phương pháp Jacobi
+            </div>
+            <div class="tab-item hide" id="hide8">
+                <i class="tab-icon fas fa-cog"></i>
+                Phương pháp Gauss
             </div>
             <div class="line"></div>
         </div>
       
         <!-- Tab content -->
-        <div class="tab-content">
-            <div class="tab-pane active">
+        <div class="tab-content hide">
+            <div class="tab-pane active hide">
                <form action="" class="dataform active">
                     <table class="method">
                         <tr>
@@ -59,7 +75,7 @@
                             <td>Nhập n</td>
                             <td>
                                 <input type="text" class="N active">
-                                <input type="button" value="Send" onclick="creatTable()">
+                                <input type="button" value="Send" onclick="creatTable1()">
                             </td>
                         </tr>
                         <tr>
@@ -73,6 +89,11 @@
                             <td>Kết quả </td>
                             <td>
                                 <div class="result"></div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <input type="button" value="Back" onclick="back1()">
                             </td>
                         </tr>
                     </table>
@@ -90,7 +111,7 @@
                             <td>Nhập n</td>
                             <td>
                                 <input type="text" class="N">
-                                <input type="button" value="Send" onclick="creatTable()">
+                                <input type="button" value="Send" onclick="creatTable2()">
                             </td>
                         </tr>
                         <tr>
@@ -106,11 +127,16 @@
                                 <div class="result"></div>
                             </td>
                         </tr>
+                        <tr>
+                            <td>
+                                <input type="button" value="Back" onclick="back1()">
+                            </td>
+                        </tr>
                     </table>
                 </form>
             </div>
       
-            <div class="tab-pane">
+            <div class="tab-pane ">
                 <div class="dataform">
                     <table class="method">
                         <tr>
@@ -147,6 +173,11 @@
                             <td>Kết quả </td>
                             <td>
                                 <div class="result"></div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <input type="button" value="Back" onclick="back2()">
                             </td>
                         </tr>
                     </table>
@@ -192,6 +223,11 @@
                                 <div class="result"></div>
                             </td>
                         </tr>
+                        <tr>
+                            <td>
+                                <input type="button" value="Back" onclick="back2()">
+                            </td>
+                        </tr>
                     </table>
                 </form>
             </div>
@@ -200,7 +236,7 @@
                 <form action="" class="dataform">
                     <table class="method">
                         <tr>
-                            <td>Nhập f(x)</td>
+                            <td>Nhập hàm f(x)</td>
                             <td>
                                 <input type="text" class="F">
                             </td>
@@ -218,7 +254,7 @@
                             </td>
                         </tr>
                         <tr>
-                            <td>Nhập e</td>
+                            <td>Nhập sai số</td>
                             <td>
                                 <input type="text" class="N">
                             </td>
@@ -235,6 +271,11 @@
                                 <div class="result"></div>
                             </td>
                         </tr>
+                        <tr>
+                            <td>
+                                <input type="button" value="Back" onclick="back3()">
+                            </td>
+                        </tr>
                     </table>
                 </form>
             </div>
@@ -242,7 +283,7 @@
                 <form action="" class="dataform">
                     <table class="method">
                         <tr>
-                            <td>Nhập f(x)</td>
+                            <td>Nhập hàm lặp</td>
                             <td>
                                 <input type="text" class="F">
                             </td>
@@ -260,7 +301,7 @@
                             </td>
                         </tr>
                         <tr>
-                            <td>Nhập e</td>
+                            <td>Nhập sai số</td>
                             <td>
                                 <input type="text" class="N">
                             </td>
@@ -277,6 +318,11 @@
                                 <div class="result"></div>
                             </td>
                         </tr>
+                        <tr>
+                            <td>
+                                <input type="button" value="Back" onclick="back3()">
+                            </td>
+                        </tr>
                     </table>
                 </form>
             </div>
@@ -284,7 +330,7 @@
                 <form action="" class="dataform">
                     <table class="method">
                         <tr>
-                            <td>Nhập f(x)</td>
+                            <td>Nhập hàm f(x)</td>
                             <td>
                                 <input type="text" class="F">
                             </td>
@@ -302,7 +348,7 @@
                             </td>
                         </tr>
                         <tr>
-                            <td>Nhập e</td>
+                            <td>Nhập sai số</td>
                             <td>
                                 <input type="text" class="N">
                             </td>
@@ -319,10 +365,132 @@
                                 <div class="result"></div>
                             </td>
                         </tr>
+                        <tr>
+                            <td>
+                                <input type="button" value="Back" onclick="back3()">
+                            </td>
+                        </tr>
                     </table>
                 </form>
             </div>
-    </div>
+            <div class="tab-pane">
+                <form action="" class="dataform" id="dataformJacobi">
+                    <table class="method">
+                        <tr>
+                            <td>Nhập hàng ma trận T</td>
+                            <td>
+                                <input type="text" class="N">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Nhập cột ma trận T</td>
+                            <td>
+                                <input type="text" class="M1">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td>
+                                <input type="button" value="Send" onclick="creatMatrixT1()">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Nhập kích cỡ vecto c</td>
+                            <td>
+                                <input type="text" class="jacobiC" id="jacobi">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td>
+                                <input type="button" value="Send" onclick="creatVectorC1()">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Nhập kích cỡ vecto X0</td>
+                            <td>
+                                <input type="text" class="jacobiX-N">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td>
+                                <input type="button" value="Send" onclick="CreateVectorX()">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Nhập sai số</td>
+                            <td>
+                                <input type="text" class="F">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td>
+                                <input type="button" value="Solve" class="method-btn" onclick="jacobiMethod()">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Kết quả </td>
+                            <td>
+                                <div class="result"></div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <input type="button" value="Back" onclick="back4()">
+                            </td>
+                        </tr>
+                    </table>
+                </form>
+            </div>
+            <div class="tab-pane">
+                <form action="" class="dataform">
+                    <table class="method">
+                        <tr>
+                            <td>Nhập hàng ma trận bổ sung</td>
+                            <td>
+                                <input type="text" class="N">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Nhập cột ma trận bổ sung</td>
+                            <td>
+                                <input type="text" class="M2">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td>
+                                <input type="button" value="Send" onclick="creatMatrixT2()">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <span type="text" class="F">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td>
+                                <input type="button" value="Solve" class="method-btn" onclick="gaussMethod()">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Kết quả </td>
+                            <td>
+                                <div class="result"></div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <input type="button" value="Back" onclick="back4()">
+                            </td>
+                        </tr>
+                    </table>
+                </form>
+            </div>
+    </div>  
 
     <script>
         
@@ -366,6 +534,119 @@
                 nActive.classList.add('active')
             }
         });
+        // Select
+        function select1() {
+            document.getElementsByClassName("menu")[0].classList.add("hide");
+            document.getElementsByClassName("after-menu hide")[0].classList.remove("hide");
+            document.getElementById("hide0").classList.remove("hide");
+            document.getElementById("hide1").classList.remove("hide");
+            document.getElementsByClassName("tab-content hide")[0].classList.remove("hide");
+            // document.getElementsByClassName("tab-pane active hide")[0].classList.remove("hide");
+            document.getElementsByClassName("N active")[0].classList.remove("active");
+            document.getElementsByClassName("N")[0].classList.add("active");
+            document.getElementsByClassName("line")[0].style.left = 0;
+            document.getElementsByClassName("line")[0].style.width = 339+"px";
+        }
+        function select2() {
+            document.getElementsByClassName("menu")[0].classList.add("hide");
+            document.getElementsByClassName("after-menu hide")[0].classList.remove("hide");
+            document.getElementById("hide2").classList.remove("hide");
+            document.getElementById("hide3").classList.remove("hide");
+            document.getElementsByClassName("tab-content hide")[0].classList.remove("hide");
+            // document.getElementsByClassName("tab-pane hide")[0].classList.remove("hide");
+            document.getElementsByClassName("tab-pane active")[0].classList.remove("active");
+            document.getElementsByClassName("tab-pane")[2].classList.add("active");
+            document.getElementsByClassName("N active")[0].classList.remove("active");
+            document.getElementsByClassName("N")[2].classList.add("active");
+            document.getElementsByClassName("F active")[0].classList.remove("active");
+            document.getElementsByClassName("F")[2].classList.add("active");
+            document.getElementsByClassName("line")[0].style.left = 0;
+            document.getElementsByClassName("line")[0].style.width = 302+"px";
+        }
+        function select3() {
+            document.getElementsByClassName("menu")[0].classList.add("hide");
+            document.getElementsByClassName("after-menu hide")[0].classList.remove("hide");
+            document.getElementById("hide4").classList.remove("hide");
+            document.getElementById("hide5").classList.remove("hide");
+            document.getElementById("hide6").classList.remove("hide");
+            document.getElementsByClassName("tab-content hide")[0].classList.remove("hide");
+            // document.getElementsByClassName("tab-pane hide")[0].classList.remove("hide");
+            document.getElementsByClassName("tab-pane active")[0].classList.remove("active");
+            document.getElementsByClassName("tab-pane")[4].classList.add("active");
+            document.getElementsByClassName("N active")[0].classList.remove("active");
+            document.getElementsByClassName("N")[4].classList.add("active");
+            document.getElementsByClassName("F active")[0].classList.remove("active");
+            document.getElementsByClassName("F")[4].classList.add("active");
+            document.getElementsByClassName("line")[0].style.left = 0;
+            document.getElementsByClassName("line")[0].style.width = 249+"px";
+        }
+        function select4() {
+            document.getElementsByClassName("menu")[0].classList.add("hide");
+            document.getElementsByClassName("after-menu hide")[0].classList.remove("hide");
+            document.getElementById("hide7").classList.remove("hide");
+            document.getElementById("hide8").classList.remove("hide");
+            document.getElementsByClassName("tab-content hide")[0].classList.remove("hide");
+            // document.getElementsByClassName("tab-pane hide")[0].classList.remove("hide");
+            document.getElementsByClassName("tab-pane active")[0].classList.remove("active");
+            document.getElementsByClassName("tab-pane")[7].classList.add("active");
+            document.getElementsByClassName("N active")[0].classList.remove("active");
+            document.getElementsByClassName("N")[7].classList.add("active");
+            document.getElementsByClassName("F active")[0].classList.remove("active");
+            document.getElementsByClassName("F")[7].classList.add("active");
+            document.getElementsByClassName("line")[0].style.left = 0;
+            document.getElementsByClassName("line")[0].style.width = 265+"px";
+        }
+        // Back
+        function back1() {
+            document.getElementsByClassName("menu hide")[0].classList.remove("hide");
+            document.getElementsByClassName("after-menu")[0].classList.add("hide");
+            document.getElementById("hide0").classList.add("hide");
+            document.getElementById("hide1").classList.add("hide");
+            document.getElementsByClassName("tab-content")[0].classList.add("hide");
+            document.getElementsByClassName("tab-pane active")[0].classList.add("hide");
+        }
+        function back2() {
+            document.getElementsByClassName("menu hide")[0].classList.remove("hide");
+            document.getElementsByClassName("after-menu")[0].classList.add("hide");
+            document.getElementById("hide2").classList.add("hide");
+            document.getElementById("hide3").classList.add("hide");
+            document.getElementsByClassName("tab-pane active")[0].classList.remove("active");
+            document.getElementsByClassName("tab-pane")[0].classList.add("active");
+            document.getElementsByClassName("tab-content")[0].classList.add("hide");
+        }
+        function back3() {
+            document.getElementsByClassName("menu hide")[0].classList.remove("hide");
+            document.getElementsByClassName("after-menu")[0].classList.add("hide");
+            document.getElementById("hide4").classList.add("hide");
+            document.getElementById("hide5").classList.add("hide");
+            document.getElementById("hide6").classList.add("hide");
+            document.getElementsByClassName("tab-pane active")[0].classList.remove("active");
+            document.getElementsByClassName("tab-pane")[0].classList.add("active");
+            document.getElementsByClassName("tab-content")[0].classList.add("hide");
+        }
+        function back4() {
+            document.getElementsByClassName("menu hide")[0].classList.remove("hide");
+            document.getElementsByClassName("after-menu")[0].classList.add("hide");
+            document.getElementById("hide7").classList.add("hide");
+            document.getElementById("hide8").classList.add("hide");
+            document.getElementsByClassName("tab-pane active")[0].classList.remove("active");
+            document.getElementsByClassName("tab-pane")[0].classList.add("active");
+            document.getElementsByClassName("tab-content")[0].classList.add("hide");
+        }
+        // Validate
+        function validateF(invalidF) {
+            if(invalidF.value=="") invalidF.classList.add('invalid')
+            else invalidF.classList.remove('invalid');
+        }
+        function validate(invalidElement) {
+            if(invalidElement.value=="" || isNaN(invalidElement.value)) {
+                invalidElement.classList.add('invalid');
+            }
+            else {
+                invalidElement.classList.remove('invalid');
+            }
+            
+        }
         // Fx
         function f(x) {
             fstring = document.getElementsByClassName("F active")[0].value;
@@ -384,6 +665,10 @@
             var h = (b-a)/n;
             var s = f(a) + f(b);
 
+            validateF(document.getElementsByClassName("F active")[0]);
+            validate(document.getElementsByClassName("trapezoidA")[0]);
+            validate(document.getElementsByClassName("trapezoidB")[0]);
+            validate(document.getElementsByClassName("N active")[0]);
             try 
             {
                 if (document.getElementsByClassName("trapezoidA")[0].value == "" ||
@@ -406,8 +691,8 @@
                 s += 2*f(x);
             }
             s = (h/2)*s;
-
-            document.getElementsByClassName("result")[2].innerHTML = s;
+            if (s==Infinity) document.getElementsByClassName("result")[2].innerHTML = "Hàm không hội tụ";
+            else document.getElementsByClassName("result")[2].innerHTML = s;
         }
         // Simpson
         function simpsonMethod() {
@@ -416,6 +701,11 @@
             var n = parseFloat(document.getElementsByClassName("N active")[0].value);
             var h = (b-a)/n;
             var s = f(a) + f(b);
+            
+            validateF(document.getElementsByClassName("F active")[0]);
+            validate(document.getElementsByClassName("simpsonA")[0]);
+            validate(document.getElementsByClassName("simpsonB")[0]);
+            validate(document.getElementsByClassName("N active")[0]);
 
             try 
             {
@@ -440,18 +730,19 @@
                 if (i%2!=0) s+= 2*f(x);
             }
             s = (h/3)*s;
-
-            document.getElementsByClassName("result")[3].innerHTML = s;
+            if (s==Infinity) document.getElementsByClassName("result")[3].innerHTML = "Hàm không hội tụ";
+            else document.getElementsByClassName("result")[3].innerHTML = s;
         }
         // CreateTable
-        function creatTable() {
-            
+        function creatTable1() {
             var n = parseInt(document.getElementsByClassName("N active")[0].value);
             var tagForm = document.getElementsByClassName("dataform active")[0];
             var tagTable = document.createElement("table");
-
+            
+            tagTable.classList.add("deleteAble");
 		    tagTable.border = 1;
             
+            validate(document.getElementsByClassName("N active")[0]);
             try 
             {
                 if (document.getElementsByClassName("N active")[0].value == "" ) throw "Nhập thiếu";
@@ -479,9 +770,263 @@
                 tagColumn.appendChild(tagInput);
                 }
             }
+            var tagRow = document.createElement("tr");
+            tagTable.appendChild(tagRow);
+            var tagButton = document.createElement("button");
+            tagButton.innerHTML = "Delete";
+            tagRow.appendChild(tagButton);
+            tagButton.addEventListener('click', () => {
+                document.getElementsByClassName("deleteAble")[0].remove();
+            });
 
             tagForm.appendChild(tagTable);
         }   
+        function creatTable2() {
+            var n = parseInt(document.getElementsByClassName("N active")[0].value);
+            var tagForm = document.getElementsByClassName("dataform active")[0];
+            var tagTable = document.createElement("table");
+            
+            tagTable.classList.add("deleteAble");
+		    tagTable.border = 1;
+            
+            validate(document.getElementsByClassName("N active")[0]);
+            try 
+            {
+                if (document.getElementsByClassName("N active")[0].value == "" ) throw "Nhập thiếu";
+                if (isNaN(document.getElementsByClassName("N active")[0].value)) throw "Không hợp lệ";
+            }
+            catch(err)
+            {
+                document.getElementsByClassName("result")[0].innerHTML = err;
+                document.getElementsByClassName("result")[1].innerHTML = err;
+                return;
+            }
+
+            for (i=0;i<n; i++) 
+            {
+                var tagRow = document.createElement("tr");
+                tagTable.appendChild(tagRow);
+            
+                for(j=0;j<2;j++) {
+                var tagColumn = document.createElement("td");
+                // var textNode = document.createTextNode(i + "-" + j);
+				// tagColumn.appendChild(textNode);
+				tagRow.appendChild(tagColumn);
+                var tagInput = document.createElement("input");
+                tagInput.setAttribute("class",String(i)+"-"+String(j)+"-");
+                tagColumn.appendChild(tagInput);
+                }
+            }
+            var tagRow = document.createElement("tr");
+            tagTable.appendChild(tagRow);
+            var tagButton = document.createElement("button");
+            tagButton.innerHTML = "Delete";
+            tagRow.appendChild(tagButton);
+            tagButton.addEventListener('click', () => {
+                document.getElementsByClassName("deleteAble")[0].remove();
+            });
+
+            tagForm.appendChild(tagTable);
+        }
+        // CreatMatrixT
+        function creatMatrixT1() {
+            var n = parseInt(document.getElementsByClassName("N active")[0].value);
+            var m = parseInt(document.getElementsByClassName("M1")[0].value);
+            var tagForm = document.getElementsByClassName("tab-pane active")[0];
+            var tagTable = document.createElement("table");
+            
+            tagTable.classList.add("deleteAble");
+            tagTable.style.marginLeft = (521 - 40*n)/2 + "px";
+		    tagTable.border = 1;
+            
+            validate(document.getElementsByClassName("N active")[0]);
+            validate(document.getElementsByClassName("M1")[0]);
+            try 
+            {
+                if (document.getElementsByClassName("N active")[0].value == "" ||
+                    document.getElementsByClassName("M1")[0].value == "" ) throw "Nhập thiếu";
+                if (isNaN(document.getElementsByClassName("N active")[0].value) ||
+                    isNaN(document.getElementsByClassName("N active")[0].value)) throw "Không hợp lệ";
+            }
+            catch(err)
+            {
+                document.getElementsByClassName("result")[7].innerHTML = err;
+                return;
+            }
+
+            for (i=0;i<n; i++) 
+            {
+                var tagRow = document.createElement("tr");
+                tagTable.appendChild(tagRow);
+            
+                for(j=0;j<m;j++) {
+                var tagColumn = document.createElement("td");
+                tagColumn.style.height = 40 +"px";
+				tagRow.appendChild(tagColumn);
+                var tagInput = document.createElement("input");
+                tagInput.style.width = 40 +"px";
+                tagInput.setAttribute("class",String(i)+"-"+String(j)+"-T");
+                tagColumn.appendChild(tagInput);
+                }
+            }
+            var tagRow = document.createElement("tr");
+            tagRow.style.height = 20 +"px";
+            tagTable.appendChild(tagRow);
+            var tagButton = document.createElement("button");
+            tagButton.innerHTML = "Delete";
+            tagRow.appendChild(tagButton);
+            tagButton.addEventListener('click', () => {
+                document.getElementsByClassName("deleteAble")[0].remove();
+            });
+
+            tagForm.appendChild(tagTable);
+        }
+        function creatMatrixT2() {
+            var n = parseInt(document.getElementsByClassName("N active")[0].value);
+            var m = parseInt(document.getElementsByClassName("M2")[0].value);
+            var tagForm = document.getElementsByClassName("tab-pane active")[0];
+            var tagTable = document.createElement("table");
+            
+            tagTable.classList.add("deleteAble");
+            tagTable.style.marginLeft = (521 - 40*(m+1))/2 + "px";
+		    tagTable.border = 1;
+            
+            validate(document.getElementsByClassName("N active")[0]);
+            validate(document.getElementsByClassName("M2")[0]);
+            try 
+            {
+                if (document.getElementsByClassName("N active")[0].value == "" ||
+                    document.getElementsByClassName("M2")[0].value == "" ) throw "Nhập thiếu";
+                if (isNaN(document.getElementsByClassName("N active")[0].value) ||
+                    isNaN(document.getElementsByClassName("N active")[0].value)) throw "Không hợp lệ";
+            }
+            catch(err)
+            {
+                document.getElementsByClassName("result")[8].innerHTML = err;
+                return;
+            }
+
+            for (i=1;i<=n; i++) 
+            {
+                var tagRow = document.createElement("tr");
+                tagTable.appendChild(tagRow);
+            
+                for(j=1;j<=m;j++) {
+                var tagColumn = document.createElement("td");
+                tagColumn.style.height = 40 +"px";
+				tagRow.appendChild(tagColumn);
+                var tagInput = document.createElement("input");
+                tagInput.style.width = 40 +"px";
+                tagInput.setAttribute("class",String(i)+"-"+String(j)+"-T");
+                tagColumn.appendChild(tagInput);
+                }
+            }
+            var tagRow = document.createElement("tr");
+            tagRow.style.height = 20 +"px";
+            tagTable.appendChild(tagRow);
+            var tagButton = document.createElement("button");
+            tagButton.innerHTML = "Delete";
+            tagRow.appendChild(tagButton);
+            tagButton.addEventListener('click', () => {
+                document.getElementsByClassName("deleteAble")[0].remove();
+            });
+
+            tagForm.appendChild(tagTable);
+        }
+        // CreateVectorC
+        function creatVectorC1() {
+            var n = parseInt(document.getElementsByClassName("jacobiC")[0].value);
+            var tagForm = document.getElementById("dataformJacobi");
+            var tagTable = document.createElement("table");
+
+            tagTable.classList.add("deleteAbleC1");
+            tagTable.border = 1;
+
+            validate(document.getElementsByClassName("jacobiC")[0]);
+            try 
+            {
+                if (document.getElementsByClassName("jacobiC")[0].value == "" ) throw "Nhập thiếu";
+                if (isNaN(document.getElementsByClassName("jacobiC")[0].value)) throw "Không hợp lệ";
+            }
+            catch(err)
+            {
+                document.getElementsByClassName("result")[7].innerHTML = err;
+                return;
+            }
+            for (i=0;i<n; i++) 
+            {
+                var tagRow = document.createElement("tr");
+                tagTable.appendChild(tagRow);
+            
+                for(j=0;j<1;j++) {
+                var tagColumn = document.createElement("td");
+                tagColumn.style.height = 40 +"px";
+				tagRow.appendChild(tagColumn);
+                var tagInput = document.createElement("input");
+                tagInput.style.width = 40 +"px";
+                tagInput.setAttribute("class",String(i));
+                tagColumn.appendChild(tagInput);
+                }
+            }
+            var tagRow = document.createElement("tr");
+            tagRow.style.height = 20 +"px";
+            tagTable.appendChild(tagRow);
+            var tagButton = document.createElement("button");
+            tagButton.innerHTML = "Delete";
+            tagRow.appendChild(tagButton);
+            tagButton.addEventListener('click', () => {
+                document.getElementsByClassName("deleteAbleC1")[0].remove();
+            });
+
+            tagForm.appendChild(tagTable);
+        }
+        function CreateVectorX() {
+            var n = parseInt(document.getElementsByClassName("jacobiX-N")[0].value);
+            var tagForm = document.getElementById("dataformJacobi");
+            var tagTable = document.createElement("table");
+            
+            tagTable.classList.add("deleteAbleX");
+		    tagTable.border = 1;
+            
+            validate(document.getElementsByClassName("jacobiX-N")[0]);
+            try 
+            {
+                if (document.getElementsByClassName("jacobiX-N")[0].value == "" ) throw "Nhập thiếu";
+                if (isNaN(document.getElementsByClassName("jacobiX-N")[0].value)) throw "Không hợp lệ";
+            }
+            catch(err)
+            {
+                document.getElementsByClassName("result")[7].innerHTML = err;
+                return;
+            }
+
+            for (i=0;i<n; i++) 
+            {
+                var tagRow = document.createElement("tr");
+                tagTable.appendChild(tagRow);
+            
+                for(j=0;j<1;j++) {
+                var tagColumn = document.createElement("td");
+                tagColumn.style.height = 40 +"px";
+				tagRow.appendChild(tagColumn);
+                var tagInput = document.createElement("input");
+                tagInput.style.width = 40 +"px";
+                tagInput.setAttribute("class",String(i)+"-X");
+                tagColumn.appendChild(tagInput);
+                }
+            }
+            var tagRow = document.createElement("tr");
+            tagRow.style.height = 20 +"px";
+            tagTable.appendChild(tagRow);
+            var tagButton = document.createElement("button");
+            tagButton.innerHTML = "Delete";
+            tagRow.appendChild(tagButton);
+            tagButton.addEventListener('click', () => {
+                document.getElementsByClassName("deleteAbleX")[0].remove();
+            });
+
+            tagForm.appendChild(tagTable);
+        }
         // Newton
         function newtonMethod() {
             var n = parseInt(document.getElementsByClassName("N active")[0].value);
@@ -489,6 +1034,9 @@
             var D = [];
             var inPutsX = [], inPutsY = [];   
 
+            validate(document.getElementsByClassName("N active")[0]);
+            validate(document.getElementsByClassName("newtonA")[0]);
+            
             try 
             {
                 if (document.getElementsByClassName("newtonA")[0].value == "" ||
@@ -535,6 +1083,9 @@
             var inPutsX = [], inPutsY = [];
             var S = 0;
 
+            validate(document.getElementsByClassName("N active")[0]);
+            validate(document.getElementsByClassName("lagrangeA")[0]);
+
             try 
             {
                 if (document.getElementsByClassName("lagrangeA")[0].value == "" ||
@@ -550,8 +1101,8 @@
 
             for (i=0;i<n;i++)
             {
-                    inPutsX[i] = parseFloat(document.getElementsByClassName(String(i)+"-"+String(0))[0].value);
-                    inPutsY[i] = parseFloat(document.getElementsByClassName(String(i)+"-"+String(1))[0].value);
+                    inPutsX[i] = parseFloat(document.getElementsByClassName(String(i)+"-"+String(0)+"-")[0].value);
+                    inPutsY[i] = parseFloat(document.getElementsByClassName(String(i)+"-"+String(1)+"-")[0].value);
             }
 
             for (k=0;k<n;k++)
@@ -570,6 +1121,12 @@
             var a = parseFloat(document.getElementsByClassName("bisectionA")[0].value);
             var b = parseFloat(document.getElementsByClassName("bisectionB")[0].value);
             var e = parseFloat(document.getElementsByClassName("N active")[0].value);
+            var i = 0;
+
+            validateF(document.getElementsByClassName("F active")[0]);
+            validate(document.getElementsByClassName("bisectionA")[0]);
+            validate(document.getElementsByClassName("bisectionB")[0]);
+            validate(document.getElementsByClassName("N active")[0]);
 
             try 
             {
@@ -594,6 +1151,12 @@
                 var fx = f(x);
                 if (fa*fx>0) a = x;	
                 else b = x;	
+                i++;
+                if (i==100) 
+                {
+                    document.getElementsByClassName("result")[4].innerHTML = "Hàm không hội tụ";
+                    return;
+                }
             } while (b-a>=e);
             document.getElementsByClassName("result")[4].innerHTML = x;
         }
@@ -604,6 +1167,12 @@
             var e = parseFloat(document.getElementsByClassName("N active")[0].value);
             var ERR = 0;
             var x = 0;
+            var i = 0;
+
+            validateF(document.getElementsByClassName("F active")[0]);
+            validate(document.getElementsByClassName("iterationX0")[0]);
+            validate(document.getElementsByClassName("iterationQ")[0]);
+            validate(document.getElementsByClassName("N active")[0]);
 
             try 
             {
@@ -614,6 +1183,7 @@
                 if (isNaN(document.getElementsByClassName("iterationX0")[0].value)||
                     isNaN(document.getElementsByClassName("iterationQ")[0].value)||
                     isNaN(document.getElementsByClassName("N active")[0].value)) throw "Không hợp lệ";
+                if (q>=1) throw "Hàm không hội tụ";
             }
             catch(err)
             {
@@ -626,6 +1196,12 @@
                 x = f(x0);
                 ERR = Math.abs(x-x0);
                 x0 = x;
+                i++;
+                if (i==100) 
+                {
+                    document.getElementsByClassName("result")[5].innerHTML = "Hàm không hội tụ";
+                    return;
+                }
             } while (ERR>=e*(1-q)/q);
             document.getElementsByClassName("result")[5].innerHTML = x;
         }
@@ -637,6 +1213,11 @@
             var ERR = 0;
             var x = 0;
             var i = 0;
+
+            validateF(document.getElementsByClassName("F active")[0]);
+            validate(document.getElementsByClassName("secantA")[0]);
+            validate(document.getElementsByClassName("secantB")[0]);
+            validate(document.getElementsByClassName("N active")[0]);
 
             try 
             {
@@ -661,8 +1242,145 @@
                 else a = x;
                 ERR = b-a;
                 i++;
+                i++;
+                if (i==100) 
+                {
+                    document.getElementsByClassName("result")[6].innerHTML = "Hàm không hội tụ";
+                    return;
+                }
             } while (ERR>=e);
-            document.getElementsByClassName("result")[6].innerHTML = x;
+            if (x==NaN) document.getElementsByClassName("result")[6].innerHTML = "Hàm không hội tụ";
+            else document.getElementsByClassName("result")[6].innerHTML = x;
+        }
+        // Jacobi
+        function jacobiMethod() {
+            var matrixT = [];
+            var vectoC = [];
+            var vectoX= [];
+            var x = [];
+            var nT = parseInt(document.getElementsByClassName("N active")[0].value);
+            var mT = parseInt(document.getElementsByClassName("M1")[0].value);
+            var nX = parseInt(document.getElementsByClassName("jacobiX-N")[0].value);
+            var nC = parseInt(document.getElementsByClassName("jacobiC")[0].value);
+            var e = parseFloat(document.getElementsByClassName("F active")[0].value);
+            var ERR = 0;
+            var count = 0;
+
+            validate(document.getElementsByClassName("N active")[0]);
+            validate(document.getElementsByClassName("M1")[0]);
+            validate(document.getElementsByClassName("jacobiX-N")[0]);
+            validate(document.getElementsByClassName("jacobiC")[0]);
+            validate(document.getElementsByClassName("F active")[0]);
+            try 
+            {
+                if (document.getElementsByClassName("N active")[0].value == "" ||
+                    document.getElementsByClassName("M1")[0].value == "" ||
+                    document.getElementsByClassName("jacobiX-N")[0].value == "" ||
+                    document.getElementsByClassName("jacobiC")[0].value == "" ||
+                    document.getElementsByClassName("F active")[0].value == "" ) throw "Nhập thiếu";
+                if (isNaN(document.getElementsByClassName("N active")[0].value) ||
+                    isNaN(document.getElementsByClassName("M1")[0].value) ||
+                    isNaN(document.getElementsByClassName("jacobiX-N")[0].value) ||
+                    isNaN(document.getElementsByClassName("jacobiC")[0].value) ||
+                    isNaN(document.getElementsByClassName("F active")[0].value) ) throw "Không hợp lệ";
+            }
+            catch(err)
+            {
+                document.getElementsByClassName("result")[7].innerHTML = err;
+                return;
+            }
+
+            for (i=0;i<nT;i++)
+            {
+                matrixT[i] = [];
+                for (j=0;j<mT;j++)
+                {
+                    matrixT[i][j] = parseFloat(document.getElementsByClassName(String(i)+"-"+String(j)+"-T")[0].value);
+                }
+            }
+            
+            for (i=0;i<nC;i++)
+            {
+                vectoC[i] = parseFloat(document.getElementsByClassName(String(i))[0].value);
+            }
+
+            for (i=0;i<nX;i++)
+            {
+                vectoX[i] = parseFloat(document.getElementsByClassName(String(i)+"-X")[0].value);
+            }
+
+            const k = math.norm(matrixT, 1);
+            do
+            {
+                x = math.add((math.multiply(vectoX, matrixT)), vectoC);
+                ERR = math.norm(math.subtract(x, vectoX), 1);
+                vectoX = x; 
+                count ++;
+                if (count == 100)  document.getElementsByClassName("result")[7].innerHTML = "Không tính được";
+             }
+            while(ERR<e*(1-k)/k);
+            document.getElementsByClassName("result")[7].innerHTML = x;
+        }
+        // Gauss
+        function gaussMethod() {
+            var matrixT = [];
+            var x = [];
+            var nT = parseInt(document.getElementsByClassName("N active")[0].value);
+            var mT = parseInt(document.getElementsByClassName("M2")[0].value);
+            mT = mT-1;
+            
+            validate(document.getElementsByClassName("N active")[0]);
+            validate(document.getElementsByClassName("M2")[0]);
+            try 
+            {
+                if (document.getElementsByClassName("N active")[0].value == "" ||
+                    document.getElementsByClassName("M2")[0].value == ""  ) throw "Nhập thiếu";
+                if (isNaN(document.getElementsByClassName("N active")[0].value) ||
+                    isNaN(document.getElementsByClassName("M2")[0].value) ) throw "Không hợp lệ";
+            }
+            catch(err)
+            {
+                document.getElementsByClassName("result")[8].innerHTML = err;
+                return;
+            }
+
+            for (i=1;i<=nT;i++)
+            {
+                matrixT[i] = [];
+                for (j=1;j<=mT+1;j++)
+                {
+                    matrixT[i][j] = parseFloat(document.getElementsByClassName(String(i)+"-"+String(j)+"-T")[0].value);
+                }
+            }
+            for(i=1;i<=nT-1;i++)
+            {
+                for(j=i+1;j<=mT;j++)
+                {
+                    ratio = matrixT[j][i]/matrixT[i][i];
+                    
+                    for(k=1;k<=mT+1;k++)
+                    {
+                            matrixT[j][k] = matrixT[j][k] - ratio*matrixT[i][k];
+                    }
+                }
+            }
+
+            x[nT] = matrixT[nT][mT+1]/matrixT[nT][nT];
+            for(i=nT-1;i>=1;i--)
+            {
+                x[i] = matrixT[i][mT+1];
+                for(j=i+1;j<=mT;j++)
+                {
+                        x[i] = x[i] - matrixT[i][j]*x[j];
+                }
+                x[i] = x[i]/matrixT[i][i];
+            }
+            document.getElementsByClassName("result")[8].innerHTML = "";
+            for (i=1;i<=nT;i++)
+            {
+                document.getElementsByClassName("result")[8].innerHTML += "x"+i+"="+x[i]+" ";
+
+            }
         }
     </script>
 
