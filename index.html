@@ -1365,13 +1365,19 @@
             do
             {
                 x = math.add((math.multiply(vectoX, matrixT)), vectoC);
-                ERR = math.norm(math.subtract(x, vectoX), 1);
+                ERR = math.norm(math.subtract(x, vectoX), "inf");
+                console.log(ERR);
                 vectoX = x; 
                 count ++;
-                if (count == 100)  document.getElementsByClassName("result")[7].innerHTML = "Không tính được";
+                if (count == 100)  
+                {
+                    document.getElementsByClassName("result")[7].innerHTML = "Không tính được";
+                    return;
+                }
              }
             while(ERR<e*(1-k)/k);
             document.getElementsByClassName("result")[7].innerHTML = x;
+            console.log(count);
         }
         // Gauss
         function gaussMethod() {
@@ -1430,7 +1436,17 @@
             document.getElementsByClassName("result")[8].innerHTML = "";
             for (i=1;i<=nT;i++)
             {
-                document.getElementsByClassName("result")[8].innerHTML += "x"+i+"="+x[i]+" ";
+                if (x[i]==Infinity||x[i]==-Infinity) 
+                {
+                    document.getElementsByClassName("result")[8].innerHTML = "Vô nghiệm";
+                    return;
+                }
+                else if (isNaN(x[i])) 
+                {
+                    document.getElementsByClassName("result")[8].innerHTML = "Vô số nghiệm";
+                    return;
+                }
+                document.getElementsByClassName("result")[8].innerHTML += "x"+i+"="+x[i].toPrecision(2)+" ";
 
             }
         }
