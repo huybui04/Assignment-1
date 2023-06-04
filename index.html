@@ -755,6 +755,21 @@
                 return;
             }
 
+            var tagRow = document.createElement("tr");
+            tagTable.appendChild(tagRow);
+            var tagColumnX = document.createElement("td");
+            var tagColumnY = document.createElement("td");
+            var tagTitleX = document.createElement("div");
+            var tagTitleY = document.createElement("div");
+            tagTitleX.textContent = "Nhập x";
+            tagTitleY.textContent = "Nhập Y";
+            tagTitleX.style.textAlign = "center";
+            tagTitleY.style.textAlign = "center";
+            tagColumnX.appendChild(tagTitleX);
+            tagColumnY.appendChild(tagTitleY);
+            tagRow.appendChild(tagColumnX);
+            tagRow.appendChild(tagColumnY);
+
             for (i=0;i<n; i++) 
             {
                 var tagRow = document.createElement("tr");
@@ -802,6 +817,21 @@
                 return;
             }
 
+            var tagRow = document.createElement("tr");
+            tagTable.appendChild(tagRow);
+            var tagColumnX = document.createElement("td");
+            var tagColumnY = document.createElement("td");
+            var tagTitleX = document.createElement("div");
+            var tagTitleY = document.createElement("div");
+            tagTitleX.textContent = "Nhập x";
+            tagTitleY.textContent = "Nhập Y";
+            tagTitleX.style.textAlign = "center";
+            tagTitleY.style.textAlign = "center";
+            tagColumnX.appendChild(tagTitleX);
+            tagColumnY.appendChild(tagTitleY);
+            tagRow.appendChild(tagColumnX);
+            tagRow.appendChild(tagColumnY);
+            
             for (i=0;i<n; i++) 
             {
                 var tagRow = document.createElement("tr");
@@ -877,8 +907,14 @@
             tagRow.appendChild(tagButton);
             tagButton.addEventListener('click', () => {
                 document.getElementsByClassName("deleteAble")[0].remove();
+                document.getElementsByClassName("titleMatrixT1")[0].remove();
             });
 
+            var tagTitle = document.createElement("div");
+            tagTitle.textContent = "Ma trận T";
+            tagTitle.classList.add("titleMatrixT1");
+            tagTitle.style.textAlign = "center";
+            tagForm.appendChild(tagTitle);
             tagForm.appendChild(tagTable);
         }
         function creatMatrixT2() {
@@ -953,6 +989,14 @@
                 document.getElementsByClassName("result")[7].innerHTML = err;
                 return;
             }
+
+            var tagRow = document.createElement("tr");
+            tagTable.appendChild(tagRow);
+            var tagColumn = document.createElement("td");
+            tagColumn.style.height = 20 +"px";
+            tagColumn.textContent = "VectoC";
+			tagRow.appendChild(tagColumn);
+
             for (i=0;i<n; i++) 
             {
                 var tagRow = document.createElement("tr");
@@ -963,7 +1007,7 @@
                 tagColumn.style.height = 40 +"px";
 				tagRow.appendChild(tagColumn);
                 var tagInput = document.createElement("input");
-                tagInput.style.width = 40 +"px";
+                tagInput.style.width = 60 +"px";
                 tagInput.setAttribute("class",String(i));
                 tagColumn.appendChild(tagInput);
                 }
@@ -980,6 +1024,7 @@
 
             tagForm.appendChild(tagTable);
         }
+
         function CreateVectorX() {
             var n = parseInt(document.getElementsByClassName("jacobiX-N")[0].value);
             var tagForm = document.getElementById("dataformJacobi");
@@ -1000,6 +1045,13 @@
                 return;
             }
 
+            var tagRow = document.createElement("tr");
+            tagTable.appendChild(tagRow);
+            var tagColumn = document.createElement("td");
+            tagColumn.style.height = 20 +"px";
+            tagColumn.textContent = "VectoX0";
+			tagRow.appendChild(tagColumn);
+
             for (i=0;i<n; i++) 
             {
                 var tagRow = document.createElement("tr");
@@ -1010,7 +1062,7 @@
                 tagColumn.style.height = 40 +"px";
 				tagRow.appendChild(tagColumn);
                 var tagInput = document.createElement("input");
-                tagInput.style.width = 40 +"px";
+                tagInput.style.width = 65 +"px";
                 tagInput.setAttribute("class",String(i)+"-X");
                 tagColumn.appendChild(tagInput);
                 }
