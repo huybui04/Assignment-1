@@ -1373,7 +1373,7 @@
                 x = math.add((math.multiply(matrixT, vectoX)), vectoC);
                 console.log(x);
                 ERR = math.subtract(x, vectoX);
-                ERR = math.norm(ERR, 1);
+                ERR = math.norm(ERR, "inf");
                 console.log(ERR);
                 vectoX = x; 
                 count ++;
